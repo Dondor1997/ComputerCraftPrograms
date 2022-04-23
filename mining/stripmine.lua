@@ -8,10 +8,41 @@ end
 local function readPosition()
     file = fs.open("./pos.txt", "w")
     x = file.readLine()
+    if x == nil then return nil end
     y = file.readLine()
     z = file.readLine()
     return x, y, z
 end
 
-savePosition()
-print(readPosition())
+local function tryDig()
+    while turtle.detect() do
+        if turtle.dig() then
+            sleep(0.5)
+        else
+            return false
+        end
+    end
+    return true
+end
+
+local function tryDigUp()
+    while turtle.detectUp() do
+        if turtle.digUp() then
+            sleep(0.5)
+        else
+            return false
+        end
+    end
+    return true
+end
+
+local function tryDigDown()
+    while turtle.detectDown() do
+        if turtle.digDown() then
+            sleep(0.5)
+        else
+            return false
+        end
+    end
+    return true
+end
