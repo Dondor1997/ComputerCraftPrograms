@@ -72,3 +72,10 @@ local function refuel()
     turtle.select(1)
     return false
 end
+
+local function checkFull()
+    for n=1, 16 do
+        if turtle.getItemCount(n) == 0 then return false end
+    end
+    return true
+end
