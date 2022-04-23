@@ -1,6 +1,3 @@
-local gps = require("gps")
-local fs = require("fs")
-
 local function savePosition()
     local x, y, z = gps.locate()
     file = fs.open("./pos.txt", "w")
