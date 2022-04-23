@@ -79,3 +79,49 @@ local function checkFull()
     end
     return true
 end
+
+local function digStrip()
+    turtle.turnLeft()
+    for n = 1, 10 do
+        tryDig()
+        turtle.forward()
+        tryDigUp()
+        tryDigDown()
+    end
+    turtle.turnLeft()
+    turtle.turnLeft()
+    for n=1,10 do
+        turtle.forward()
+    end
+    for n = 1, 10 do
+        tryDig()
+        turtle.forward()
+        tryDigUp()
+        tryDigDown()
+    end
+    turtle.turnLeft()
+    turtle.turnLeft()
+    for n=1,10 do
+        turtle.forward()
+    end
+    turtle.turnRight()
+end
+
+length = arg[1]
+if length == nil then
+    length = 1000
+end
+depth = 0
+-- Start Digging
+tryDigUp()
+turtle.up()
+while depth < length do
+    tryDig()
+    turtle.forward()
+    tryDigUp()
+    tryDigDown()
+    if depth % 3 == 0 then
+        digStrip()
+    end
+    depth = depth + 1
+end
