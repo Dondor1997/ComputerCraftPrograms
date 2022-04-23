@@ -111,7 +111,7 @@ length = arg[1]
 if length == nil then
     length = 1000
 end
-depth = 0
+depth = 1
 -- Start Digging
 tryDigUp()
 turtle.up()
