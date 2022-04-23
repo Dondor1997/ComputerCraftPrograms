@@ -54,3 +54,21 @@ end
 local function returnToStart()
 
 end
+
+local function refuel()
+    local fuelLevel = turtle.getFuelLevel()
+    if fuelLevel == "unlimited" or fuelLevel > 0 then
+        return
+    end
+    for n=1, 16 do
+        if turtle.getItemCount(n) > 0 then
+            turtle.select(n)
+            if turtle.refuel(1) then
+                turtle.select(1)
+                return true
+            end
+        end
+    end
+    turtle.select(1)
+    return false
+end
