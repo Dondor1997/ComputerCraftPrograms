@@ -46,3 +46,11 @@ local function tryDigDown()
     end
     return true
 end
+
+local function mineVein()
+
+end
+
+local function returnToStart()
+
+end
