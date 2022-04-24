@@ -120,7 +120,7 @@ local function digStrip()
         end
         stripDepth = stripDepth + 1
     end
-    if conifg["torch"] then
+    if config["torch"] then
         tryPlaceTorch()
     end
     turtle.turnLeft()
