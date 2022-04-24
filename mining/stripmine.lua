@@ -50,7 +50,8 @@ local function tryDigDown()
     return true
 end
 
-local function tryForward()
+local function tryMove()
+    tryRefuel()
     if turtle.detect() then 
         print("Something is blocking the way")
         return false 
@@ -68,10 +69,10 @@ local function returnToStart()
 
 end
 
-local function refuel()
+local function tryRefuel()
     local fuelLevel = turtle.getFuelLevel()
     if fuelLevel == "unlimited" or fuelLevel > 0 then
-        return
+        return true
     end
     for n=1, 16 do
         if turtle.getItemCount(n) > 0 then
@@ -97,28 +98,38 @@ end
 
 
 local function digStrip()
+    local stripDepth = 1
     turtle.turnLeft()
-    for n = 1, 10 do
+    while stripDepth < 10 do
         tryDig()
-        turtle.forward()
-        tryDigUp()
-        tryDigDown()
+        if tryMove() then
+            tryDigUp()
+            tryDigDown()
+        else 
+            break
+        end
+        stripDepth = stripDepth + 1
     end
     turtle.turnLeft()
     turtle.turnLeft()
-    for n=1,10 do
-        turtle.forward()
+    for n=1,stripDepth do
+        tryMove()
     end
-    for n = 1, 10 do
+    stripDepth = 1
+    while stripDepth < 10 do
         tryDig()
-        turtle.forward()
-        tryDigUp()
-        tryDigDown()
+        if tryMove() then
+            tryDigUp()
+            tryDigDown()
+        else 
+            break
+        end
+        stripDepth = stripDepth + 1
     end
     turtle.turnLeft()
     turtle.turnLeft()
-    for n=1,10 do
-        turtle.forward()
+    for n=1,stripDepth do
+        tryMove()
     end
     turtle.turnRight()
 end
