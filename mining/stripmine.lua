@@ -135,7 +135,7 @@ end
 local function emptyInventory(depth)
     turtle.turnLeft()
     turtle.turnLeft()
-    for i = 0, depth do
+    for i = 1, depth do
         tryMove()
     end
     for n = 1, 16 do
@@ -149,7 +149,7 @@ local function emptyInventory(depth)
     turtle.suckDown()
     turtle.turnLeft()
     turtle.turnLeft()
-    for i = 2, depth do
+    for i = 1, depth do
         tryMove()
     end
 end
