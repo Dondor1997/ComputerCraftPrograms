@@ -110,7 +110,7 @@ local function digStrip()
     end
     turtle.turnLeft()
     turtle.turnLeft()
-    for n=1,stripDepth do
+    for n=2,stripDepth do
         tryMove()
     end
     stripDepth = 1
@@ -126,7 +126,7 @@ local function digStrip()
     end
     turtle.turnLeft()
     turtle.turnLeft()
-    for n=1,stripDepth do
+    for n=2,stripDepth do
         tryMove()
     end
     turtle.turnRight()
