@@ -172,26 +172,33 @@ local function emptyInventory(depth)
     end
 end
 
--- Get tunnel length
-if arg[1] ~= nil then
-    length = tonumber(arg[1])
-else
-    lenth = 1000
+local function processArgs()
+    local length
+    if arg[1] ~= nil then
+        length = tonumber(arg[1])
+    else
+        lenth = 1000
+    end
+    return length
 end
-depth = 1
--- Start Digging
-tryDigUp()
-turtle.up()
-while depth < length do
-    tryDig()
-    tryMove()
+
+local function stripmine(length)
+    depth = 1
     tryDigUp()
-    tryDigDown()
-    if depth % config["stripDistance"] == 0 then
-        digStrip()
-    end
-    depth = depth + 1
-    if checkFull() then
-        emptyInventory(depth)
+    turtle.up()
+    while depth < length do
+        tryDig()
+        tryMove()
+        tryDigUp()
+        tryDigDown()
+        if depth % config["stripDistance"] == 0 then
+            digStrip()
+        end
+        depth = depth + 1
+        if checkFull() then
+            emptyInventory(depth)
+        end
     end
 end
+
+stripmine(processArgs())
