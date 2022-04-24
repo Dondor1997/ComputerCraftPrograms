@@ -145,7 +145,7 @@ local function emptyInventory(depth)
     turtle.select(1)
     turtle.turnLeft()
     turtle.turnLeft()
-    for i = 0, depth do
+    for i = 2, depth do
         tryMove()
     end
 end
