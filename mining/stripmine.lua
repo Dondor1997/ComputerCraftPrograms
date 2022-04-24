@@ -140,6 +140,16 @@ local function emptyInventory(depth)
     for i = 1,depth do
         tryForward()
     end
+    for n = 1, 16 do
+        turtle.select(n)
+        turtle.drop()
+    end
+    turtle.select(1)
+    turtle.turnLeft()
+    turtle.turnLeft()
+    for i = 1, depth do
+        tryForward()
+    end
 end
 
 -- Get tunnel length
@@ -153,11 +163,14 @@ tryDigUp()
 turtle.up()
 while depth < length do
     tryDig()
-    turtle.forward()
+    tryForward()
     tryDigUp()
     tryDigDown()
     if depth % 3 == 0 then
         digStrip()
     end
     depth = depth + 1
+    if checkFull() then
+        emptyInventory()
+    end
 end
