@@ -1,3 +1,8 @@
+local config = {}
+config["torch"] = false
+config["stripDepth"] = 10
+config["stripDistance"] = 3
+
 local function savePosition()
     local x, y, z = gps.locate()
     file = fs.open("./pos.txt", "w")
@@ -95,10 +100,17 @@ local function checkFull()
     return true
 end
 
+local function placeTorch()
+    if not turtle.detectUp() then
+        turtle.select(2)
+        turtle.placeUp()
+    end
+end
+
 local function digStrip()
     local stripDepth = 1
     turtle.turnLeft()
-    while stripDepth < 10 do
+    while stripDepth < config["stripDepth"] do
         tryDig()
         if tryMove() then
             tryDigUp()
@@ -114,7 +126,7 @@ local function digStrip()
         tryMove()
     end
     stripDepth = 1
-    while stripDepth < 10 do
+    while stripDepth < config["stripDepth"] do
         tryDig()
         if tryMove() then
             tryDigUp()
@@ -155,9 +167,10 @@ local function emptyInventory(depth)
 end
 
 -- Get tunnel length
-length = arg[1]
-if length == nil then
-    length = 1000
+if arg[1] ~= nil then
+    length = tonumber(arg[1])
+else
+    lenth = 1000
 end
 depth = 1
 -- Start Digging
@@ -168,7 +181,7 @@ while depth < length do
     tryMove()
     tryDigUp()
     tryDigDown()
-    if depth % 3 == 0 then
+    if depth % config["stripDistance"] == 0 then
         digStrip()
     end
     depth = depth + 1
