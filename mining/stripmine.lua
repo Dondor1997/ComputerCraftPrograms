@@ -135,7 +135,7 @@ end
 local function emptyInventory(depth)
     turtle.turnLeft()
     turtle.turnLeft()
-    for i = 0,depth do
+    for i = 0, depth do
         tryMove()
     end
     for n = 1, 16 do
@@ -169,6 +169,6 @@ while depth < length do
     end
     depth = depth + 1
     if checkFull() then
-        emptyInventory()
+        emptyInventory(depth)
     end
 end
