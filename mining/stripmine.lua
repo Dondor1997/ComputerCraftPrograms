@@ -135,17 +135,17 @@ end
 local function emptyInventory(depth)
     turtle.turnLeft()
     turtle.turnLeft()
-    for i = 1,depth do
+    for i = 0,depth do
         tryMove()
     end
     for n = 1, 16 do
         turtle.select(n)
-        turtle.drop()
+        turtle.dropDown()
     end
     turtle.select(1)
     turtle.turnLeft()
     turtle.turnLeft()
-    for i = 1, depth do
+    for i = 0, depth do
         tryMove()
     end
 end
