@@ -177,7 +177,7 @@ local function processArgs()
     if arg[1] then
         length = tonumber(arg[1])
     else
-        lenth = 1000
+        length = 1000
     end
     return length
 end
