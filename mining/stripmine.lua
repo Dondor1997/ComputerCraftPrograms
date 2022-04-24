@@ -19,6 +19,7 @@ local function tryDig()
         if turtle.dig() then
             sleep(0.5)
         else
+            print("Cannot dig forward")
             return false
         end
     end
@@ -30,6 +31,7 @@ local function tryDigUp()
         if turtle.digUp() then
             sleep(0.5)
         else
+            print("Cannot dig up")
             return false
         end
     end
@@ -41,10 +43,21 @@ local function tryDigDown()
         if turtle.digDown() then
             sleep(0.5)
         else
+            print("Cannot dig down")
             return false
         end
     end
     return true
+end
+
+local function tryForward()
+    if turtle.detect() then 
+        print("Something is blocking the way")
+        return false 
+    else
+        turtle.forward()
+        return true
+    end
 end
 
 local function mineVein()
@@ -70,6 +83,7 @@ local function refuel()
         end
     end
     turtle.select(1)
+    print("No more fuel")
     return false
 end
 
@@ -79,6 +93,8 @@ local function checkFull()
     end
     return true
 end
+
+
 
 local function digStrip()
     turtle.turnLeft()
@@ -107,6 +123,15 @@ local function digStrip()
     turtle.turnRight()
 end
 
+local function emptyInventory(depth)
+    turtle.turnLeft()
+    turtle.turnLeft()
+    for i = 1,depth do
+        tryForward()
+    end
+end
+
+-- Get tunnel length
 length = arg[1]
 if length == nil then
     length = 1000
