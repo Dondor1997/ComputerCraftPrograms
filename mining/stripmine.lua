@@ -174,7 +174,7 @@ end
 
 local function processArgs()
     local length
-    if arg[1] ~= nil then
+    if arg[1] then
         length = tonumber(arg[1])
     else
         lenth = 1000
