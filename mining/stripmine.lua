@@ -95,8 +95,6 @@ local function checkFull()
     return true
 end
 
-
-
 local function digStrip()
     local stripDepth = 1
     turtle.turnLeft()
@@ -138,7 +136,7 @@ local function emptyInventory(depth)
     turtle.turnLeft()
     turtle.turnLeft()
     for i = 1,depth do
-        tryForward()
+        tryMove()
     end
     for n = 1, 16 do
         turtle.select(n)
@@ -148,7 +146,7 @@ local function emptyInventory(depth)
     turtle.turnLeft()
     turtle.turnLeft()
     for i = 1, depth do
-        tryForward()
+        tryMove()
     end
 end
 
@@ -163,7 +161,7 @@ tryDigUp()
 turtle.up()
 while depth < length do
     tryDig()
-    tryForward()
+    tryMove()
     tryDigUp()
     tryDigDown()
     if depth % 3 == 0 then
