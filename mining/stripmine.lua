@@ -100,7 +100,7 @@ local function checkFull()
     return true
 end
 
-local function placeTorch()
+local function tryPlaceTorch()
     if not turtle.detectUp() then
         turtle.select(2)
         turtle.placeUp()
@@ -120,6 +120,9 @@ local function digStrip()
         end
         stripDepth = stripDepth + 1
     end
+    if conifg["torch"] then
+        tryPlaceTorch()
+    end
     turtle.turnLeft()
     turtle.turnLeft()
     for n=2,stripDepth do
@@ -135,6 +138,9 @@ local function digStrip()
             break
         end
         stripDepth = stripDepth + 1
+    end
+    if config["torch"] then
+        tryPlaceTorch()
     end
     turtle.turnLeft()
     turtle.turnLeft()
