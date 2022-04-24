@@ -140,9 +140,13 @@ local function emptyInventory(depth)
     end
     for n = 1, 16 do
         turtle.select(n)
-        turtle.dropDown()
+        if not turtle.dropDown() then
+            print("Target inventory is full")
+            break
+        end
     end
     turtle.select(1)
+    turtle.suckDown()
     turtle.turnLeft()
     turtle.turnLeft()
     for i = 2, depth do
