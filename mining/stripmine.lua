@@ -50,25 +50,6 @@ local function tryDigDown()
     return true
 end
 
-local function tryMove()
-    tryRefuel()
-    if turtle.detect() then 
-        print("Something is blocking the way")
-        return false 
-    else
-        turtle.forward()
-        return true
-    end
-end
-
-local function mineVein()
-
-end
-
-local function returnToStart()
-
-end
-
 local function tryRefuel()
     local fuelLevel = turtle.getFuelLevel()
     if fuelLevel == "unlimited" or fuelLevel > 0 then
@@ -86,6 +67,25 @@ local function tryRefuel()
     turtle.select(1)
     print("No more fuel")
     return false
+end
+
+local function tryMove()
+    tryRefuel()
+    if turtle.detect() then 
+        print("Something is blocking the way")
+        return false 
+    else
+        turtle.forward()
+        return true
+    end
+end
+
+local function mineVein()
+
+end
+
+local function returnToStart()
+
 end
 
 local function checkFull()
